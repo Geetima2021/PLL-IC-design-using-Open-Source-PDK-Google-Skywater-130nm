@@ -45,7 +45,22 @@ Hence the concept of DOWN signal and UP signal is applied. Whenever the output s
 
 ## Introduction to charge pump
 
+It converts the digital measure of phase/frequency difference into an analog signal to control the oscillator. The circuit diagram of the charge pump circuit is as shown below. It consists of a current stirring circuit whose output depends on whether the capacitor is charging or dischahging based on the Up and Down signal. However, the charge pump has leakage issue.
 
+![CP_comb](https://user-images.githubusercontent.com/63381455/127774109-4723c54a-67ae-429d-9dbc-1e5e58a90d15.JPG)
+
+Now in order to stabilize the output a loop filter (LPF) is added along with the capacitor. The value of the capacitor is is change and its value is based on the thumb rule along with the loop filter bandwidth is as shown in the figure. 
+
+![charge_pump](https://user-images.githubusercontent.com/63381455/127774970-0200c314-f426-440f-b6ef-33de727db623.jpg)
+
+## Voltage control oscillator
+
+The most common oscillator, Ring oscillator is used as a VCO. It consists of odd number of inverters connected in series, which has the same number of delay.  The output flips after the delay and hence driving half of a period which is given twice the delay of the inverter and the inverter count viz `period = 2*delay(inverter)*inverter count` which bascically signifies that it has a fixed frequency. To have control over the frequency, a current starving mechanism is used over the ring oscillator circuit, where two supply of currect sources are provided to the top and bottom of the ring oscillator, which are controlled by the control voltage. The current sources in turn control the frequencies.It is necesary to design the VCO circuit prooperly to ensure that the desired range of frequency for is obtained.
+
+
+![VCO](https://user-images.githubusercontent.com/63381455/127775454-6c06558a-26b6-4efa-bccb-b8a03e0c93d1.JPG)
+
+Frequency Divider 
 
 
 
