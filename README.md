@@ -11,6 +11,7 @@
   - [Voltage control oscillator and Frequency Divider](#VCO)
   - [Tool setup and design flow]
   - [Introduction to PDK, specifications and pre-layout circuits](#PDK)
+- [Day 2 : PLL Labs and Post Layout simulations](#lay)
 
 ## Overview
 
@@ -97,15 +98,25 @@ This section deals with the tool setup and the development flow. For installaing
 
 The Process design kit (PDK) used is the open source Google Skywater 130nm. PDK's are basically the foundry files which contains about the trnsistor, their configuarion, timing information, area occupied, layout, verilog. However, in building the PLL IC all these information is not necessary as it is designed from scratch i.e from the transistor level. Also the PDK has diffrent process corners and in this case the TT corner is considered. The specications in designng the IC are mentioned in the [repository](https://github.com/lakshmi-sathi/avsdpll_1v8). Also the PDK provides different sets of libraries and for this case the primitive library for spice simulation is used. 
 
+
+
 The first step to start the lab exercise is to git clone the avsdpll_1v8 repository using the git command followed by the url of the repository viz `git clone https://github.com/lakshmi-sathi/avsdpll_1v8.git`. Thus, a folder will be created which contains all the necessary files and folders required for the smooth functioning of the workshop.
 
 ![LAB1](https://user-images.githubusercontent.com/63381455/127780740-15755297-a66c-4053-828e-0ec756b64db4.JPG)
 
 
 
-Now, the necessary files required for the lab is to be collected in the same location and thereafter a file is to created with all the required libraries for used during execution of the ngspice programs. With respect to the specification given, the nfet and pfet configuration for 1.8v supply voltage, TT corner and room temperature, therequired libraries are collected in the same location for ease in the operation. The snapshot of the list of the libraries considered is as shown below.
+Now, the necessary files required for the lab is to be collected in the same location and thereafter a file is to created with all the required libraries for used during execution of the ngspice programs. With respect to the specification given, the nfet and pfet configuration for 1.8v supply voltage, TT corner and room temperature, the required libraries are collected in the same location for ease in the operation. The snapshot of the list of the libraries considered is as shown below.
 
 ![lab2](https://user-images.githubusercontent.com/63381455/127781879-1c7abdc5-b1eb-4389-b14f-933790fe4ac4.JPG)
+
+## Day 2 : PLL Labs and Post Layout simulations
+
+During the Day 2, some of the labs of post layout simualtions are done to get the feel and the changes to be done on the extracted spice files for getting the result similar to that of pre layout simulation.
+
+## PLL component circuit design
+
+Here the Frequency divider circuit is 
  
 
 
