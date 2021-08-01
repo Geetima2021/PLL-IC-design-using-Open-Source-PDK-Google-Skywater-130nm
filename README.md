@@ -5,7 +5,8 @@
 
 - [Overview](#overview)
 - [Day 1 : PLL Theory and Lab set-up](#Day1)
-  - [Introduction to PLL](#GNU)
+  - [Introduction to PLL](#PLL)
+  - - [Introduction to Phase frequency detector](#PFD)
 
 ## Overview
 
@@ -23,8 +24,25 @@ Now starting from the basic question:
 
 Why PLL? 
 
-To get precise clock signal without frequency and phase noise. Also to have flexibility to work on frequency of choice. Now as quartz crystal provides superior spectral purity, fixed frequency and phase noise performance, VCO on the other hand has good flexibility and implemantable on SOC, hence the amalgamation of the two for designing a simple PLL IC is good enough.
- 
+To get precise clock signal without frequency and phase noise. Also to have flexibility to work on frequency of choice. Now as quartz crystal provides superior spectral purity, fixed frequency and phase noise performance, VCO on the other hand has good flexibility and implemantable on SOC, hence the amalgamation of the two for designing a simple PLL IC is good enough. The Phase lock loop intution is based on the abilitity of the output signial to mimic the input reference signal and maintaining a constant phase difference. The block diagram of the PLL is as shown in figure below with a more detailed one next to it.
+
+
+![6](https://user-images.githubusercontent.com/63381455/127767306-796e61e9-e3b1-4617-b5fb-9925f649725e.JPG)
+![7](https://user-images.githubusercontent.com/63381455/127767319-8d36f4ae-a3fc-4e80-9871-7e736b0474e9.JPG)
+
+Phase frequency detector, works by comparing the reference frequency signal and the output frequency to bring about synchronization so that the phase difference is minimum, whose output is in digital form. Next the charge pump circuit converts the same into analog signal which the LPF smoothens and serves as input to the VCO. The Frequency divider circuit also known as clock muliiplier as it divides the entire circuit to a mulitiplier circuit. Say for example if the FD signal is divided by 8 then the VCO has to be adjusted so that the signal is 8 times that of the reference signal. 
+
+## Introduction to phase frequecy detector
+
+Two cases are considered - one when the output frequeny is leading the reference frequency and the other when it is lagging. The two signals are then XORed and their output compared. From the XORed signal it is concluded that it is difficult to distinguish between the lagging and leading signal baded on this method. The reference figure is included below.
+
+![LL](https://user-images.githubusercontent.com/63381455/127772339-dcb515b4-4c5f-4c29-9060-448d3282f5a4.JPG)
+
+Hence the concept of DOWN signal and UP signal is applied. Whenever the output signal is leading the DOWN signal is activated and vice versa incase of lagging signal and thereby the VCO signal is adjusted as per requirement to minimize the phase difference. 
+
+![PFD](https://user-images.githubusercontent.com/63381455/127772653-4cf48e66-1654-4965-9e8a-e451da199ae8.jpg)
+
+
 
 
 
