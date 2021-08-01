@@ -17,5 +17,15 @@ This repository deals with the workshop which signinfies the beginning of a new 
 
 ## Day 1 : PLL Theory and Lab set-up
 
-Day1 is divided into two parts - PLL Theory section and the Lab set-up section. The 
+Day1 is divided into two parts - PLL Theory section and the Lab set-up section. The approach taken by the instructor [Lakshmi Sathi](https://github.com/lakshmi-sathi/avsdpll_1v8) the designer herself, in designing the Phase-Locked Loop IC on Open-Source Google-Skywater 130nm node is an intuitive one where a simple PLL with extraordinarily little math and without diving into complex frequency domain analysis or control system theory is considered. 
+
+Now starting from the basic question:
+
+Why PLL? 
+
+To get precise clock signal without frequency and phase noise. Also to have flexibility to work on frequency of choice. Now as quartz crystal provides superior spectral purity, fixed frequency and phase noise performance, VCO on the other hand has good flexibility and implemantable on SOC, hence the amalgamation of the two for designing a simple PLL IC is good enough.
+ 
+
+
+
 
