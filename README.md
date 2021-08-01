@@ -6,7 +6,11 @@
 - [Overview](#overview)
 - [Day 1 : PLL Theory and Lab set-up](#Day1)
   - [Introduction to PLL](#PLL)
-  - - [Introduction to Phase frequency detector](#PFD)
+  - [Introduction to Phase frequency detector](#PFD)
+  - [Introduction to charge pump](#CP)
+  - [Voltage control oscillator and Frequency Divider](#VCO)
+  - [Tool setup and design flow]
+  - [Introduction to PDK, specifications and pre-layout circuits](#PDK)
 
 ## Overview
 
@@ -53,14 +57,56 @@ Now in order to stabilize the output a loop filter (LPF) is added along with the
 
 ![charge_pump](https://user-images.githubusercontent.com/63381455/127774970-0200c314-f426-440f-b6ef-33de727db623.jpg)
 
-## Voltage control oscillator
+## Voltage control oscillator and Frequency Divider
 
 The most common oscillator, Ring oscillator is used as a VCO. It consists of odd number of inverters connected in series, which has the same number of delay.  The output flips after the delay and hence driving half of a period which is given twice the delay of the inverter and the inverter count viz `period = 2*delay(inverter)*inverter count` which bascically signifies that it has a fixed frequency. To have control over the frequency, a current starving mechanism is used over the ring oscillator circuit, where two supply of currect sources are provided to the top and bottom of the ring oscillator, which are controlled by the control voltage. The current sources in turn control the frequencies.It is necesary to design the VCO circuit prooperly to ensure that the desired range of frequency for is obtained.
 
 
 ![VCO](https://user-images.githubusercontent.com/63381455/127775454-6c06558a-26b6-4efa-bccb-b8a03e0c93d1.JPG)
 
-Frequency Divider 
+###Frequency Divider 
+
+As the output of the toggle flip flop is half the frequency of the input sigal. Hence, if we had a D-flip we can make into a toggle flip flop by adding an inverter to the ouput and input pin of the D flip flop. Hence, if the a signal with 10 ns period is supplied at the input, the ouput will a signal of 20 ns period as shown in figure below. For obtaining a 8x multiplier 3 such toggling flip flop can be used.
+ 
+![31](https://user-images.githubusercontent.com/63381455/127779491-de5072d8-41d7-405c-9e5d-d35125e60ade.JPG)
+
+Some common terms used in PLL
+
+ - Lock range : The frequency the range the PLL is able to follow input frequency variations once locked.
+
+- Capture range: The frequency range the PLL is able to lock-in when starting from an unlocked condition and it depends on the bandwidth of the loop filter.
+
+- Settling time : The time the PLL requires to be in lock step from an unlocked state. It depends on how the charge pump reaches its stable value
+
+## Tool setup and design flow
+
+This section deals with the tool setup and the development flow. For installaing the required tools into local machine the open source tools ngspice and magic is to be installed along the Google skywater PDK - a 130 nm process. The details of the same can be found [here](https://github.com/lakshmi-sathi/avsdpll_1v8/blob/main/README.md#-Instruction).
+
+### Development flow
+
+ The design/development flow for any IC includes the following steps
+ 
+ - Specification 
+ - Spice level circuit simulation
+ - Pre-layout simulation
+ - Layout development
+ - Parasitic extraction
+ - Post layout simualtion
+
+## Introduction to PDK, specifications and pre-layout circuits
+
+The Process design kit (PDK) used is the open source Google Skywater 130nm. PDK's are basically the foundry files which contains about the trnsistor, their configuarion, timing information, area occupied, layout, verilog. However, in building the PLL IC all these information is not necessary as it is designed from scratch i.e from the transistor level. Also the PDK has diffrent process corners and in this case the TT corner is considered. The specications in designng the IC are mentioned in the [repository](https://github.com/lakshmi-sathi/avsdpll_1v8). Also the PDK provides different sets of libraries and for this case the primitive library for spice simulation is used. 
+
+The first step to start the lab exercise is to git clone the avsdpll_1v8 repository using the git command followed by the url of the repository viz `git clone https://github.com/lakshmi-sathi/avsdpll_1v8.git`. Thus, a folder will be created which contains all the necessary files and folders required for the smooth functioning of the workshop.
+
+![LAB1](https://user-images.githubusercontent.com/63381455/127780740-15755297-a66c-4053-828e-0ec756b64db4.JPG)
+
+
+
+Now, the necessary files required for the lab is to be collected in the same location and thereafter a file is to created with all the required libraries for used during execution of the ngspice programs. With respect to the specification given, the nfet and pfet configuration for 1.8v supply voltage, TT corner and room temperature, therequired libraries are collected in the same location for ease in the operation. The snapshot of the list of the libraries considered is as shown below.
+
+![lab2](https://user-images.githubusercontent.com/63381455/127781879-1c7abdc5-b1eb-4389-b14f-933790fe4ac4.JPG)
+ 
 
 
 
