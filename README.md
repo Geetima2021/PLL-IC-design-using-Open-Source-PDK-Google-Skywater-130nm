@@ -20,10 +20,11 @@
   - [Layout walkthrough](#walk)
   - [Tapeout theory](#tape)
   - [Tapeout labs](#labs)
+- [Acknoledgement](#Ack)
 
 ## Overview
 
-This repository deals with the workshop which signinfies the beginning of a new era of “Design at $0” as visualize and materialize by the continuous effort of the entire VSD team and [Lakshmi Sathi](https://github.com/lakshmi-sathi/avsdpll_1v8). The workshop is also another standard VSD IAT cloud based 2 days workshop with 24 hrs accessibility of the platform to each participants. The VSD IAT platform provides all the necessary material including remote access of their ubuntu server for carrying on the labs with the pre-loaded tools required for the particular workshop. Assessment is also done through the multiple choice questions, including both the theoritical understanding and lab exercise. However, the installation procedure of the required tools viz ngspice and magic for use in our local system is covered. The snippet of the platform and lab instance is as shown  below. 
+This repository deals with the workshop which signinfies the beginning of a new era of “Design at $0” as visualize and materialize by the continuous effort of the entire VSD team and [Lakshmi Sathi](https://github.com/lakshmi-sathi/avsdpll_1v8). This workshop is also another standard VSD IAT cloud based 2 days workshop with 24 hrs accessibility of the platform to each participants. The VSD IAT platform provides all the necessary material including remote access of their ubuntu server for carrying on the labs with the pre-loaded tools required for the particular workshop. Assessment is also done through the multiple choice questions, including both the theoritical understanding and lab exercise. However, the installation procedure of the required tools viz ngspice and magic for use in our local system is covered. The snippet of the platform and lab instance is as shown  below. 
 
 ![Platform](https://user-images.githubusercontent.com/63381455/127762673-1e95f130-8853-4e38-8531-486f8d1ba857.png)
 
@@ -126,22 +127,28 @@ During the Day 2, some of the labs of post layout simualtions are done for under
 
 Now the frequency divider spice file is checked and the proper location of the library file is mentioned for its execution. Also, the maximum allowable length for 130nm process is considered i.e 150nm. As far as the width of the transistors the minimum width for nmos is 360nm and for pmos is 420nm. Base on the requirement of the design the width of the transistor are adjusted. The snippet of the FD.cir is included below.
 
-#FD.cir snippet to be included
+![FD](https://user-images.githubusercontent.com/63381455/127850477-6428146b-8d26-4b0d-88bc-96e4c03e63dd.png)
+
 
 ## PLL component circuit simulation
 
 Here the circuit simulation of the charge pump circuit is done as a part of lab assessment. For that the library file path is checked and modified, and therafter slight modification in the transient response ending time is done from 1u to 20us, inorder to find the voltage at the output due to leakage, which is 800uv. The snapshot of the assessment along with the output is included below.
 
-#Assessment to be included
-#Ouput to be included
+![ques](https://user-images.githubusercontent.com/63381455/127852722-1514448b-4aa5-4625-8379-479c02fb5a14.png)
+
+![LAB4](https://user-images.githubusercontent.com/63381455/127853091-be9edcff-7be2-4000-a5cc-f17f898fab6d.JPG)
+
 
 ## Steps to combine PLL sub circuits and PLL full design simulation
 
  After individually designing the layout of the different components the next step is to combime the layouts into the final layout design. Thus a magic file is opened using the command `magic -T sky130A.tech`, where `sky130A.tech`, is the technology file provided by Google Skywater. Now the individual layouts are placed by clicking cells part and using the place instance as shown in the figure below. Initially blank box appears and to view the layout the  'i' key followed by the 'x' key is used. After properly placing the layouts, the next step is to connect them together using the input and the output metal layers and combining them together by appropriate via.
  
- #Fig1
- #Fig2
- #Fig3
+![PI1](https://user-images.githubusercontent.com/63381455/127850788-f5fd46b3-bd7a-408b-9519-421d75581119.png)
+
+![PI2](https://user-images.githubusercontent.com/63381455/127851505-336a12c1-f9eb-4fde-9afe-461daa6087d0.png)
+
+![PI3](https://user-images.githubusercontent.com/63381455/127851666-913dbf66-6aa4-40ca-bedc-b82ab76ff46e.png)
+
  
  ## Troubleshooting
  
@@ -162,16 +169,21 @@ Here the circuit simulation of the charge pump circuit is done as a part of lab 
  
  Here some discussion on the magic design tool is done viz drawing a simple nmos transistor, using of the color pallete on the right hand side of the layout window which showcase the different layers required in layout design, selecting the entire design using the key `A`, moving the entire design to a different location using `M` key or simply copying it through `C` key. If drc error exists it can be viwed by using `?` in the tkcon window, and the error has to be rectified.  Now here a lab  execise is done to find the area of either charge pump/frequency detector. For that simply the a box is selected by left clicking say on the top left corner and right clicking on the bottom right corner thereafter simply th box command is used in tkcon window/editor of magic as shown in figure below.
  
- #fig
+![LAB8](https://user-images.githubusercontent.com/63381455/127853337-80bf838d-0f70-4dea-a3a7-56db55912e4e.JPG)
+
  
  ## Layout walkthrough
  
- The VCO layout design is considered, and the design is explained thoroughly and the figure of the VCO design is included below. 
+ The VCO layout design is considered, and the design is explained thoroughly and the figure of the VCO design is included below. The final layout of  the PLL IC is also included below.
+ 
+ ![VCO_Layout](https://user-images.githubusercontent.com/63381455/127853544-aa3d1ce0-baae-4f58-88ba-3b4c8d139b52.jpg)
+
+ ![PLL_Layout](https://user-images.githubusercontent.com/63381455/127853614-78b35d0e-f3ba-49e1-a6ca-5e20228bf081.jpg)
+
  
  Note: This figure is taken from the github repository of the [designer](https://github.com/lakshmi-sathi/avsdpll_1v8).
  
- #fig
- 
+  
  ## Parasitic extraction
  
  For extracting the parasitic capacitance and resistance after layout design the following command are used in the tkcon window.
@@ -191,11 +203,13 @@ Here the circuit simulation of the charge pump circuit is done as a part of lab 
  
  After extraction of the spice file, all the parasitics are included in it along with other parameters (ad,as,pd,ps) and some changes occurs in the spice program. The first thing which changes is the scale for the transistor sizing and hence it should be changed to the required scale. Now the parasitic extraction of the PFD file is done and the spice file is checked and it is found that a total of 43 parasitics capacitance is extracted nad the highest capacitive value is of capacitor C35 = 3.76fF, across the VDD and GND pin which is observe as a part of lab exercise. The snapshot of the same is included below.
  
-#fig
+![LAB9](https://user-images.githubusercontent.com/63381455/127853710-b8c54471-c87e-45b5-9d3a-83bbbfea4da2.JPG)
+
 
 Next exercise is to instantiate the subckt to the newly generated PFD spice file and make a phase difference of 0.25ns between the reference clock signal and the feedback clock signal and to obsere the output generated. It is observed that the up signal is short and is capable of detecting the small phase difference between the two signal.
 
-#Fig assessment
+![quest](https://user-images.githubusercontent.com/63381455/127853902-c3a6a713-0cff-4bff-aabf-4f0a5d4b8a87.JPG)
+
 
 Finally after removing the drc errors any verifing the proper functioning of the design, the next step is to create the gds file of the final PLL design, using magic. Go to file in the layout window and simply `write gds`, a gds file is created which is used for the final tapeout.
 
@@ -211,7 +225,9 @@ Tapeout is he process of adding the final design to the FAB after we prepare it.
 
 However, in the open source world this has been made easy by Efabless through its MPW open shuttle program which is sponsored by Google. Efabless provides a Caravel SOC where anyone can use it for their design fabrication. For this a user project area is defined where the designer places his/her design based on the pins placement and makes the necessary connection. The Caravel SOC along with its details is as shown in figure below. The details of the Efables MPW shuttle 2 program can be viewed [here](https://efabless.com/open_shuttle_program/2).
 
-#fig
+![CaravelSoc](https://user-images.githubusercontent.com/63381455/127854944-ae4b8d73-2038-420d-8c02-9c559b6aace8.png)
+
+
 
 ## Tapeout Labs
 
@@ -219,4 +235,7 @@ However, in the open source world this has been made easy by Efabless through it
 - Next open the `user_analog_project_wrapper_empty.gds.gz` in magic using the command `magic -T sky130A.tech user_analog_project_wrapper_empty.gds.gz` and place the PLL design in the used define area. By zooming in the pins available in the SOC can be viewed. The PLL has 5 pins, 1 each for voltage and ground, 2 digital IO pins for Ref_Clk and out_clk pina and an analog pin for the output VCO.
 
 
+## Acknowledgment
 
+- [Kunal Ghosh](https://github.com/kunalg123), Co-founder, VSD Corp. Pvt. Ltd.
+- [Lakshmi Sathi](https://github.com/lakshmi-sathi/avsdpll_1v8), MS, Georgia institute of technology
