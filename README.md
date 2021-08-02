@@ -65,7 +65,7 @@ The most common oscillator, Ring oscillator is used as a VCO. It consists of odd
 
 ![VCO](https://user-images.githubusercontent.com/63381455/127775454-6c06558a-26b6-4efa-bccb-b8a03e0c93d1.JPG)
 
-###Frequency Divider 
+### Frequency Divider 
 
 As the output of the toggle flip flop is half the frequency of the input sigal. Hence, if we had a D-flip we can make into a toggle flip flop by adding an inverter to the ouput and input pin of the D flip flop. Hence, if the a signal with 10 ns period is supplied at the input, the ouput will a signal of 20 ns period as shown in figure below. For obtaining a 8x multiplier 3 such toggling flip flop can be used.
  
@@ -112,7 +112,7 @@ Now, the necessary files required for the lab is to be collected in the same loc
 
 ## Day 2 : PLL Labs and Post Layout simulations
 
-During the Day 2, some of the labs of post layout simualtions are done to get the feel and the changes to be done on the extracted spice files for getting the result similar to that of pre layout simulation.
+During the Day 2, some of the labs of post layout simualtions are done for understanding of the procedure required and the changes to be done so that the pre-layout and post-layout simulations output matches.
 
 ## PLL component circuit design
 
