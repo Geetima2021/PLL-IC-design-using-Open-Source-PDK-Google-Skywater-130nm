@@ -12,6 +12,14 @@
   - [Tool setup and design flow]
   - [Introduction to PDK, specifications and pre-layout circuits](#PDK)
 - [Day 2 : PLL Labs and Post Layout simulations](#lay)
+  - [PLL component circuit design](#des)
+  - [PLL component circuit simulation](#sim)
+  - [Steps to combine PLL sub circuits and PLL full design simulation](#sub)
+  - [Troubleshooting](#trou)
+  - [Layout design](#lay)
+  - [Layout walkthrough](#walk)
+  - [Tapeout theory](#tape)
+  - [Tapeout labs](#labs)
 
 ## Overview
 
@@ -116,10 +124,99 @@ During the Day 2, some of the labs of post layout simualtions are done for under
 
 ## PLL component circuit design
 
-Here the Frequency divider circuit is 
+Now the frequency divider spice file is checked and the proper location of the library file is mentioned for its execution. Also, the maximum allowable length for 130nm process is considered i.e 150nm. As far as the width of the transistors the minimum width for nmos is 360nm and for pmos is 420nm. Base on the requirement of the design the width of the transistor are adjusted. The snippet of the FD.cir is included below.
+
+#FD.cir snippet to be included
+
+## PLL component circuit simulation
+
+Here the circuit simulation of the charge pump circuit is done as a part of lab assessment. For that the library file path is checked and modified, and therafter slight modification in the transient response ending time is done from 1u to 20us, inorder to find the voltage at the output due to leakage, which is 800uv. The snapshot of the assessment along with the output is included below.
+
+#Assessment to be included
+#Ouput to be included
+
+## Steps to combine PLL sub circuits and PLL full design simulation
+
+ After individually designing the layout of the different components the next step is to combime the layouts into the final layout design. Thus a magic file is opened using the command `magic -T sky130A.tech`, where `sky130A.tech`, is the technology file provided by Google Skywater. Now the individual layouts are placed by clicking cells part and using the place instance as shown in the figure below. Initially blank box appears and to view the layout the  'i' key followed by the 'x' key is used. After properly placing the layouts, the next step is to connect them together using the input and the output metal layers and combining them together by appropriate via.
  
+ #Fig1
+ #Fig2
+ #Fig3
+ 
+ ## Troubleshooting
+ 
+ It is important to troubleshoot/debug a design at the individual level prior connecting them together which saves from unwanted hiccups at later stage. In case of PLL IC design some of the issues face during Pre-layout simulation is mentioned below along with its debugging procedure.
+ 
+ - PreLayout-Sim: What to do if it doesn't work?
+ 
+   - Observe what kind of issue is faced
+   - Always debug individual component fully before moving to combined simulation 
+   - Are some signals coming up flat? Or the siumalation is crashing? - Check connections
+   - The signals are right but mimicking not happening - Check wrong net name, capatilization issue or wrong parameter value
+   - For what range of frequencies, is the VCO working properly?
+   - Is the phase frequency detector able to detect small difference
+   - How is the response of Charge Pump?
+   - Whether the loop filter values ane working out?
+  
+ ## Layout design
+ 
+ Here some discussion on the magic design tool is done viz drawing a simple nmos transistor, using of the color pallete on the right hand side of the layout window which showcase the different layers required in layout design, selecting the entire design using the key `A`, moving the entire design to a different location using `M` key or simply copying it through `C` key. If drc error exists it can be viwed by using `?` in the tkcon window, and the error has to be rectified.  Now here a lab  execise is done to find the area of either charge pump/frequency detector. For that simply the a box is selected by left clicking say on the top left corner and right clicking on the bottom right corner thereafter simply th box command is used in tkcon window/editor of magic as shown in figure below.
+ 
+ #fig
+ 
+ ## Layout walkthrough
+ 
+ The VCO layout design is considered, and the design is explained thoroughly and the figure of the VCO design is included below. 
+ 
+ Note: This figure is taken from the github repository of the [designer](https://github.com/lakshmi-sathi/avsdpll_1v8).
+ 
+ #fig
+ 
+ ## Parasitic extraction
+ 
+ For extracting the parasitic capacitance and resistance after layout design the following command are used in the tkcon window.
+``` 
+ extract all
+ ```
+ it extracts a .ext file
+ 
+ ```
+ ext2spice cthresh 0 rthresh 0
+ ```
+ extracts the parasitics from the 0'th value itself.
+ ```
+ ext2spice
+ ```
+ generates a spice file
+ 
+ After extraction of the spice file, all the parasitics are included in it along with other parameters (ad,as,pd,ps) and some changes occurs in the spice program. The first thing which changes is the scale for the transistor sizing and hence it should be changed to the required scale. Now the parasitic extraction of the PFD file is done and the spice file is checked and it is found that a total of 43 parasitics capacitance is extracted nad the highest capacitive value is of capacitor C35 = 3.76fF, across the VDD and GND pin which is observe as a part of lab exercise. The snapshot of the same is included below.
+ 
+#fig
 
+Next exercise is to instantiate the subckt to the newly generated PFD spice file and make a phase difference of 0.25ns between the reference clock signal and the feedback clock signal and to obsere the output generated. It is observed that the up signal is short and is capable of detecting the small phase difference between the two signal.
 
+#Fig assessment
+
+Finally after removing the drc errors any verifing the proper functioning of the design, the next step is to create the gds file of the final PLL design, using magic. Go to file in the layout window and simply `write gds`, a gds file is created which is used for the final tapeout.
+
+## Tapeout theory
+
+Tapeout is he process of adding the final design to the FAB after we prepare it. The preparing stage consists of number of steps.
+
+- Inclusion of I/O pads
+- Peripherals for serial connection
+- Memory 
+- Testing mechanism
+- Others
+
+However, in the open source world this has been made easy by Efabless through its MPW open shuttle program which is sponsored by Google. Efabless provides a Caravel SOC where anyone can use it for their design fabrication. For this a user project area is defined where the designer places his/her design based on the pins placement and makes the necessary connection. The Caravel SOC along with its details is as shown in figure below. The details of the Efables MPW shuttle 2 program can be viewed [here](https://efabless.com/open_shuttle_program/2).
+
+#fig
+
+## Tapeout Labs
+
+- The first step is to go to the efabless caravel github [link](https://github.com/efabless/caravel) and from the gds folder download `user_analog_project_wrapper_empty.gds.gz` and extract it.
+- Next open the `user_analog_project_wrapper_empty.gds.gz` in magic using the command `magic -T sky130A.tech user_analog_project_wrapper_empty.gds.gz` and place the PLL design in the used define area. By zooming in the pins available in the SOC can be viewed. The PLL has 5 pins, 1 each for voltage and ground, 2 digital IO pins for Ref_Clk and out_clk pina and an analog pin for the output VCO.
 
 
 
