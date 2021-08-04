@@ -9,7 +9,7 @@
   - [Introduction to Phase frequency detector](#PFD)
   - [Introduction to charge pump](#CP)
   - [Voltage control oscillator and Frequency Divider](#VCO)
-  - [Tool setup and design flow]
+  - [Tool setup and design flow](#tool)
   - [Introduction to PDK, specifications and pre-layout circuits](#PDK)
 - [Day 2 : PLL Labs and Post Layout simulations](#lay)
   - [PLL component circuit design](#des)
