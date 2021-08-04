@@ -235,4 +235,4 @@ However, in the open source world this has been made easy by Efabless through it
 ## Acknowledgment
 
 - [Kunal Ghosh](https://github.com/kunalg123), Co-founder, VSD Corp. Pvt. Ltd.
-- [Lakshmi Sathi,8X PLL Clock Multipler](https://github.com/lakshmi-sathi/avsdpll_1v8)
+- [Lakshmi Sathi,8x PLL Clock Multipler IP on Google-skywater 130nm node](https://github.com/lakshmi-sathi/avsdpll_1v8).
