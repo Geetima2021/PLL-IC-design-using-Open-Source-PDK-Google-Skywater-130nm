@@ -179,9 +179,6 @@ Here the circuit simulation of the charge pump circuit is done as a part of lab 
  ![VCO_Layout](https://user-images.githubusercontent.com/63381455/127853544-aa3d1ce0-baae-4f58-88ba-3b4c8d139b52.jpg)
 
  ![PLL_Layout](https://user-images.githubusercontent.com/63381455/127853614-78b35d0e-f3ba-49e1-a6ca-5e20228bf081.jpg)
-
- 
- Note: This figure is taken from the github repository of the [designer](https://github.com/lakshmi-sathi/avsdpll_1v8).
  
   
  ## Parasitic extraction
@@ -238,4 +235,4 @@ However, in the open source world this has been made easy by Efabless through it
 ## Acknowledgment
 
 - [Kunal Ghosh](https://github.com/kunalg123), Co-founder, VSD Corp. Pvt. Ltd.
-- [Lakshmi Sathi](https://github.com/lakshmi-sathi/avsdpll_1v8), MS, Georgia institute of technology
+- [Lakshmi Sathi,8X PLL Clock Multipler](https://github.com/lakshmi-sathi/avsdpll_1v8)
