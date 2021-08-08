@@ -24,7 +24,7 @@
 
 ## Overview
 
-This repository deals with the workshop which signinfies the beginning of a new era of “Design at $0” as visualize and materialize by the continuous effort of the entire VSD team and [Lakshmi Sathi](https://github.com/lakshmi-sathi/avsdpll_1v8). This workshop is also another standard VSD IAT cloud based 2 days workshop with 24 hrs accessibility of the platform to each participants. The VSD IAT platform provides all the necessary material including remote access of their ubuntu server for carrying on the labs with the pre-loaded tools required for the particular workshop. Assessment is also done through the multiple choice questions, including both the theoritical understanding and lab exercise. However, the installation procedure of the required tools viz ngspice and magic for use in our local system is covered. The snippet of the platform and lab instance is as shown  below. 
+This repository deals with the workshop which signinfies the beginning of a new era of “Design at $0” as visualize and materialize by the continuous effort of the entire VSD team and [Lakshmi Sathi](https://github.com/lakshmi-sathi/avsdpll_1v8). It is another of VSD standard VSD IAT cloud based 2 days workshop with 24 hrs accessibility of the platform to each participants. The VSD IAT platform provides all the necessary material including remote access of their ubuntu server for carrying on the labs with the pre-loaded tools required for the particular workshop. Assessment is also done through the multiple choice questions, including both the theoritical understanding and lab exercise. However, the installation procedure of the required tools viz ngspice and magic for use in our local system is covered. The snippet of the platform and lab instance is as shown  below. 
 
 ![Platform](https://user-images.githubusercontent.com/63381455/127762673-1e95f130-8853-4e38-8531-486f8d1ba857.png)
 
@@ -38,7 +38,7 @@ Now starting from the basic question:
 
 Why PLL? 
 
-To get precise clock signal without frequency and phase noise. Also to have flexibility to work on frequency of choice. Now as quartz crystal provides superior spectral purity, fixed frequency and phase noise performance, VCO on the other hand has good flexibility and implemantable on SOC, hence the amalgamation of the two for designing a simple PLL IC is good enough. The Phase lock loop intution is based on the abilitity of the output signial to mimic the input reference signal and maintaining a constant phase difference. The block diagram of the PLL is as shown in figure below with a more detailed one next to it.
+To get precise clock signal without frequency and phase noise. Also to have flexibility to work on frequency of choice. Now as quartz crystal provides superior spectral purity, fixed frequency and phase noise performance, VCO on the other hand has good flexibility and implemantable on SOC, hence the amalgamation of the two for designing a simple PLL IC is good enough. The Phase lock loop intution is based on the ability of the output signal to mimic the input reference signal and maintaining a constant phase difference. The block diagram of the PLL is as shown in figure below with a more detailed one next to it.
 
 
 ![6](https://user-images.githubusercontent.com/63381455/127767306-796e61e9-e3b1-4617-b5fb-9925f649725e.JPG)
@@ -59,7 +59,7 @@ Hence the concept of DOWN signal and UP signal is applied. Whenever the output s
 
 ## Introduction to charge pump
 
-It converts the digital measure of phase/frequency difference into an analog signal to control the oscillator. The circuit diagram of the charge pump circuit is as shown below. It consists of a current stirring circuit whose output depends on whether the capacitor is charging or dischahging based on the Up and Down signal. However, the charge pump has leakage issue.
+It converts the digital measure of phase/frequency difference into an analog signal to control the oscillator. The circuit diagram of the charge pump circuit is as shown below. It consists of a current stirring circuit whose output depends on whether the capacitor is charging or discharging based on the Up and Down signal. However, the charge pump has leakage issue.
 
 ![CP_comb](https://user-images.githubusercontent.com/63381455/127774109-4723c54a-67ae-429d-9dbc-1e5e58a90d15.JPG)
 
@@ -69,7 +69,7 @@ Now in order to stabilize the output a loop filter (LPF) is added along with the
 
 ## Voltage control oscillator and Frequency Divider
 
-The most common oscillator, Ring oscillator is used as a VCO. It consists of odd number of inverters connected in series, which has the same  delay.  The output flips after the delay and hence driving half of a period which is given twice the delay of the inverter and the inverter count viz `period = 2*delay(inverter)*inverter count` which bascically signifies that it has a fixed frequency. To have control over the frequency, a current starving mechanism is used over the ring oscillator circuit, where two supply of currect sources are provided to the top and bottom of the ring oscillator, which are controlled by the control voltage. The current sources in turn control the frequencies.It is necesary to design the VCO circuit prooperly to ensure that the desired range of frequency for is obtained.
+The most common oscillator, Ring oscillator is used as a VCO. It consists of odd number of inverters connected in series, which has the same  delay.  The output flips after the delay and hence driving half of a period which is given twice the delay of the inverter and the inverter count viz `period = 2*delay(inverter)*inverter count` which bascically signifies that it has a fixed frequency. To have control over the frequency, a current starving mechanism is used over the ring oscillator circuit, where two supply of currect sources are provided to the top and bottom of the ring oscillator, which are controlled by the control voltage. The current sources in turn control the frequencies.It is necesary to design the VCO circuit properly to ensure that the desired range of frequency is obtained.
 
 
 ![VCO](https://user-images.githubusercontent.com/63381455/127775454-6c06558a-26b6-4efa-bccb-b8a03e0c93d1.JPG)
@@ -90,7 +90,7 @@ Some common terms used in PLL
 
 ## Tool setup and design flow
 
-This section deals with the tool setup and the development flow. For installaing the required tools into local machine the open source tools ngspice and magic is to be installed along the Google skywater PDK - a 130 nm process. The details of the same can be found [here](https://github.com/lakshmi-sathi/avsdpll_1v8/blob/main/README.md#-Instruction).
+This section deals with the tool setup and the development flow. For using the required tools into local machine the open source tools ngspice and magic is to be installed along the Google skywater PDK - a 130 nm process. The details of the same can be found [here](https://github.com/lakshmi-sathi/avsdpll_1v8/blob/main/README.md#-Instruction).
 
 ### Development flow
 
@@ -101,13 +101,24 @@ This section deals with the tool setup and the development flow. For installaing
  - Pre-layout simulation
  - Layout development
  - Parasitic extraction
- - Post layout simualtion
+ - Post layout simulation 
 
 ## Introduction to PDK, specifications and pre-layout circuits
 
-The Process design kit (PDK) used is the open source Google Skywater 130nm. PDK's are basically the foundry files which contains about the trnsistor, their configuarion, timing information, area occupied, layout, verilog. However, in building the PLL IC all these information is not necessary as it is designed from scratch i.e from the transistor level. Also the PDK has diffrent process corners and in this case the TT corner is considered. The specications in designng the IC are mentioned in the [repository](https://github.com/lakshmi-sathi/avsdpll_1v8). Also the PDK provides different sets of libraries and for this case the primitive library for spice simulation is used. 
+The Process design kit (PDK) used is the open source Google Skywater 130nm. PDK's are basically the foundry files which contains information about the transistor, their configuarion, timing information, area occupied, layout, verilog etc. However, in building the PLL IC all these information is not necessary as it is designed from scratch i.e from the transistor level. Also the PDK has diffrent process corners and in this case the TT corner is considered. The specications provided in designng the PLL IC are mentioned below and the per-layout and post-layout output obtained can be viewed in the [repository](https://github.com/lakshmi-sathi/avsdpll_1v8). Also the PDK provides different sets of libraries and in this case the primitive library as obtained from [here](https://github.com/google/skywater-pdk/tree/main/libraries/sky130_fd_pr) is used for spice simulation. 
 
-
+### Specifications for PLL design
+   
+   |   Parameters    |    Value      |
+   | -------------   | ------------- |
+   | Supply voltage  |     1.8V      |
+   | Temperature     |     27C       |
+   | Corner          |     TT        |
+   | Input Frequency |F<sub>min</sub> = 5MHz, F<sub>max</sub> = 12.5 MHz |
+   | Jitter          | < 20ns        |
+   | Duty cycle      |  50% |
+   | Phase noise     | < 10ns |
+   | Multiplier      | 8x   |
 
 The first step to start the lab exercise is to git clone the avsdpll_1v8 repository using the git command followed by the url of the repository viz `git clone https://github.com/lakshmi-sathi/avsdpll_1v8.git`. Thus, a folder will be created which contains all the necessary files and folders required for the smooth functioning of the workshop.
 
@@ -132,7 +143,7 @@ Now the frequency divider spice file is checked and the proper location of the l
 
 ## PLL component circuit simulation
 
-Here the circuit simulation of the charge pump circuit is done as a part of lab assessment. For that the library file path is checked and modified, and therafter slight modification in the transient response ending time is done from 1u to 20us, inorder to find the voltage at the output due to leakage, which is 800uv. The snapshot of the assessment along with the output is included below.
+Here the circuit simulation of the charge pump circuit is done as a part of lab assessment. For that the library file path is checked and modified, and therafter slight modification in the transient response ending time is done from 1us to 20us, inorder to find the voltage at the output due to leakage, which is 800uv. The snapshot of the assessment along with the output is included below.
 
 ![ques](https://user-images.githubusercontent.com/63381455/127852722-1514448b-4aa5-4625-8379-479c02fb5a14.png)
 
@@ -229,7 +240,7 @@ However, in the open source world this has been made easy by Efabless through it
 ## Tapeout Labs
 
 - The first step is to go to the efabless caravel github [link](https://github.com/efabless/caravel) and from the gds folder download `user_analog_project_wrapper_empty.gds.gz` and extract it.
-- Next open the `user_analog_project_wrapper_empty.gds.gz` in magic using the command `magic -T sky130A.tech user_analog_project_wrapper_empty.gds.gz` and place the PLL design in the used define area. By zooming in the pins available in the SOC can be viewed. The PLL has 5 pins, 1 each for voltage and ground, 2 digital IO pins for Ref_Clk and out_clk pina and an analog pin for the output VCO.
+- Next open the `user_analog_project_wrapper_empty.gds.gz` in magic using the command `magic -T sky130A.tech user_analog_project_wrapper_empty.gds.gz` and place the PLL design in the used define area. By zooming in the pins available in the SOC can be viewed. The PLL has 5 pins, 1 each for voltage and ground, 2 digital IO pins for Ref_Clk and out_clk pins and an analog pin for the output VCO. The PLL IC is placed in the user defined area based on the pin placement and the connections are made thereaftter for the final processing/tapeout of the PLL IC.
 
 
 ## Acknowledgment
