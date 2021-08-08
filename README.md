@@ -240,7 +240,7 @@ However, in the open source world this has been made easy by Efabless through it
 ## Tapeout Labs
 
 - The first step is to go to the efabless caravel github [link](https://github.com/efabless/caravel) and from the gds folder download `user_analog_project_wrapper_empty.gds.gz` and extract it.
-- Next open the `user_analog_project_wrapper_empty.gds.gz` in magic using the command `magic -T sky130A.tech user_analog_project_wrapper_empty.gds.gz` and place the PLL design in the used define area. By zooming in the pins available in the SOC can be viewed. The PLL has 5 pins, 1 each for voltage and ground, 2 digital IO pins for Ref_Clk and out_clk pins and an analog pin for the output VCO. The PLL IC is placed in the user defined area based on the pin placement and the connections are done properly, thus the final processing of the PLL IC is completed and it is ready for tapeout. The proper process with regards to tapeout is mentioned [here](https://github.com/lakshmi-sathi/avsdpll_1v8).
+- Next open the `user_analog_project_wrapper_empty.gds.gz` in magic using the command `magic -T sky130A.tech user_analog_project_wrapper_empty.gds.gz` and place the PLL design in the used define area. By zooming in the pins available in the SOC can be viewed. The PLL has 5 pins, 1 each for voltage and ground, 2 digital IO pins for Ref_Clk and out_clk pins and an analog pin for the output VCO. The PLL IC is placed in the user defined area based on the pin placement and the connections are done properly, thus the final processing of the PLL IC is completed and it is ready for tapeout. The proper tapeout process is clearly documented in the avsdpll_1v8 github [link](https://github.com/lakshmi-sathi/avsdpll_1v8)of the designer.
 
 
 ## Acknowledgment
