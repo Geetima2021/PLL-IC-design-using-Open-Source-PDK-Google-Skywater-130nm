@@ -136,7 +136,7 @@ During the Day 2, some of the labs of post layout simualtions are done for under
 
 ## PLL component circuit design
 
-Now the frequency divider spice file is checked and the proper location of the library file is mentioned for its execution. Also, the minimum allowable length for 130nm process is considered to be 150nm. As far as the width of the transistors the minimum width for nmos is 360nm and for pmos is 420nm. Base on the requirement of the design the width of the transistor are adjusted. The snippet of the FD.cir is included below.
+Now the frequency divider spice file is checked and the proper location of the library file is mentioned for its execution. Also, the maximum allowable length for 130nm process is considered to be 150nm. As far as the width of the transistors the minimum width for nmos is 360nm and for pmos is 420nm. Base on the requirement of the design the width of the transistor are adjusted. The snippet of the FD.cir is included below.
 
 ![FD](https://user-images.githubusercontent.com/63381455/127850477-6428146b-8d26-4b0d-88bc-96e4c03e63dd.png)
 
